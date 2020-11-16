@@ -1,4 +1,4 @@
-# Learning Links
-- A graphql api to service my Learning Links Frontend.
+# Learning Lynx 
+- A graphql api to service my Learning Lynx Frontend.
 
 ### In Development
