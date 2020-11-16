@@ -41,7 +41,7 @@ export const jsonOptions: winston.LoggerOptions = {
       })
     }),
     new winston.transports.File({
-      dirname: "../../../logs/",
+      dirname: "../../logs/",
       filename: "nodeEventsJson.log",
       tailable: true,
       level: LOG_LEVEL,
@@ -102,7 +102,7 @@ export const consoleOptions: winston.LoggerOptions = {
   transports: [
     new winston.transports.Console({ level: LOG_LEVEL }),
     new winston.transports.File({
-      dirname: "../../../logs/",
+      dirname: "../../logs/",
       filename: "nodeEventsConsole.log",
       tailable: true,
       level: LOG_LEVEL,
