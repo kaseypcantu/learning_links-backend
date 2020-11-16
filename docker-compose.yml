@@ -1,18 +1,18 @@
 version: '3.3'
 services:
 
-  backend:
-    image: kpcwebdev/grapqhl_api:latest
-    env_file:
-      - .env
-    depends_on:
-      - db
-      - redis
-    ports:
-    - 1993:1993
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+#  backend:
+#    image: kpcwebdev/learning_links:latest
+#    env_file:
+#      - .env
+#    depends_on:
+#      - db
+#      - redis
+#    ports:
+#    - 1993:1993
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile
 
 
   db:
@@ -38,12 +38,6 @@ services:
       - $PWD/redis.conf:/user/local/etc/redis/redis.conf
     environment:
       REDIS_REPLICATION_MODE: master
-
-  redis_insight:
-    image: redislabs/redisinsight:latest
-    restart: always
-    ports:
-      - 8090:8001
 
   pgadmin:
     image:  dpage/pgadmin4:4.23
