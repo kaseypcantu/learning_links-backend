@@ -18,7 +18,7 @@ services:
   db:
     image: postgres:12.3-alpine
     volumes:
-      - $PWD/postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres_data:/var/lib/postgresql/data
     restart: always
     ports:
       - 5432:5432
@@ -34,8 +34,8 @@ services:
     ports:
       - 6379:6379
     volumes:
-      - $PWD/redis-data:/var/lib/redis
-      - $PWD/redis.conf:/user/local/etc/redis/redis.conf
+      - ./docker/redis-data:/var/lib/redis
+      - ./docker/redis.conf:/user/local/etc/redis/redis.conf
     environment:
       REDIS_REPLICATION_MODE: master
 
