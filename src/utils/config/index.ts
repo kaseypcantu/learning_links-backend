@@ -34,7 +34,7 @@ export const LOG_FORMAT = logFormatFlag() ? process.env.LOG_FORMAT as string : "
 
 export const initDB = async (): Promise<void> => {
   await createTypeOrmConnection(
-    PG_HOST,
+    isProd ? PG_HOST : 'localhost',
     PG_PORT,
     PG_USER,
     PG_PASSWORD,

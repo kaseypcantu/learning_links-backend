@@ -4,7 +4,7 @@ import logger from "./logger";
 import { ELASTICACHE_HOST, ELASTICACHE_PASSWORD, ELASTICACHE_PORT, isProd } from "./config";
 
 export const redis = new Redis({
-  host: process.env.REDIS_HOST,
+  host: isProd ? process.env.REDIS_HOST : 'localhost',
   port: 6379
 });
 
