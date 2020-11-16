@@ -21,9 +21,6 @@ export class Link extends BaseEntity {
   @Column({ name: "link_url", nullable: false, type: "varchar" })
   url!: string;
 
-  @Column({ name: "link_topics", nullable: false, type: "text" })
-  topics?: string;
-
   @Column({ name: "link_description", nullable: false, type: "text" })
   description?: string;
 

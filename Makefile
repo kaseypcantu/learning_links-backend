@@ -11,7 +11,7 @@ help:
 #	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-jsdev-image: ## Make a development Node.js docker image dev/test dependencies.
+jsdev-image: ## Make a development Node.js docker image with dev/test dependencies.
 	docker build --rm --target jsdev -t $(IMAGE):dev .
 
 prod-image: ## Make a production Node.js docker image.
@@ -23,10 +23,10 @@ jsdev-shell: ## Make a BASH shell in the jsdev docker container.
 prod-shell: ## Make a BASH shell in the production docker container.
 	docker run --rm --it $(IMAGE):$(TAG) bash
 
-droplets_local: ## Make local docker-machine nodes.
+droplets_local: ## Make a local docker-machine nodes.
 	#for i in droplet{1..3}; do docker-machine create -d virtualbox --virtualbox-cpu-count 2 $i; done
 
-droplets_disappear: ## Make docker-machine nodes shutdown and remove them
+droplets_disappear: ## Make a docker-machine nodes shutdown and remove them.
 	#for i in droplet{1..3}; do docker-machine rm -y $i; done
 
 docker-stack_local: prod-image ## Make a local deployment using docker-compose and docker swarm.
