@@ -1,0 +1,13 @@
+query {
+    allUsers {
+        userId
+        firstName
+        lastName
+        email
+        username
+        createdAt
+        updatedAt
+        accountConfirmed
+        forgotPasswordLocked
+    }
+}

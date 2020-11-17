@@ -1,0 +1,20 @@
+mutation {
+    register(
+        userData: {
+            firstName: "admin",
+            lastName: "admin"
+            email: "admin@admin.com"
+            username: "adminTest"
+            password: "adminTest"
+        }
+    ) {
+        firstName
+        lastName
+        email
+        username
+        accountConfirmed
+        forgotPasswordLocked
+        createdAt
+        updatedAt
+    }
+}

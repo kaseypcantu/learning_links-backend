@@ -1,0 +1,11 @@
+query {
+    allLinks {
+        linkId
+        title
+        url
+        programmingLanguage
+        description
+        createdAt
+        updatedAt
+    }
+}

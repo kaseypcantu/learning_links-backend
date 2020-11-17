@@ -1,0 +1,18 @@
+mutation {
+    createLink(
+        linkData: {
+            title: "Learn K8s",
+            url: "https://kubernetes.io/docs/tutorials/kubernetes-basics/",
+            programmingLanguage: "All Languages",
+            description: "Kubernetes is a Docker Container Orchestration tool."
+        }
+    ) {
+        linkId
+        title
+        url
+        programmingLanguage
+        description
+        createdAt
+        updatedAt
+    }
+}

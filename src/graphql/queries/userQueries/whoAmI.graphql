@@ -1,0 +1,14 @@
+query {
+    whoAmI {
+        userId
+        firstName
+        lastName
+        email
+        username
+        createdAt
+        updatedAt
+        accountConfirmed
+        forgotPasswordLocked
+        }
+    }
+}

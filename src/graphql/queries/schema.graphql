@@ -23,6 +23,7 @@ type Mutation {
 }
 
 type Query {
+    allLinks: [Links!]!
     allUsers: [User!]!
     whoAmI: User
 }
