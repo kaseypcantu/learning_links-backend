@@ -3,7 +3,7 @@ import "dotenv/config";
 import { Connection, createConnection, getConnection, BaseEntity, ObjectType } from "typeorm";
 import { User } from "../../entity/User/User";
 import { config } from "dotenv";
-import { Link } from "../../entity/Link/Link";
+import { Links } from "../../entity/Links/Links";
 
 // import util from "util";
 // import logger from "../logger";
@@ -26,7 +26,7 @@ export const createTypeOrmConnection = async (
     logging: "all",
     entities: [
       User,
-      Link
+      Links
     ]
   }).then(connection => {
 
