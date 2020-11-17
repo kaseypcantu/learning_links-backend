@@ -1,6 +1,7 @@
 import { Field, InputType } from 'type-graphql';
 import { Length } from 'class-validator';
 
+// TODO: Add validation decorator for the URL field.
 @InputType()
 export class CreateLinkInput {
   @Field()
