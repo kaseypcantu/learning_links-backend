@@ -1,22 +1,10 @@
 version: '3.3'
 services:
 
-#  backend:
-#    image: kpcwebdev/learning_links:latest
-#    env_file:
-#      - .env
-#    depends_on:
-#      - db
-#      - redis
-#    ports:
-#    - 1993:1993
-#    build:
-#      context: .
-#      dockerfile: ./Dockerfile
-
-
   db:
     image: postgres:12.3-alpine
+    env_file:
+      - .env
     volumes:
       - ./docker/postgres_data:/var/lib/postgresql/data
     restart: always
@@ -29,6 +17,8 @@ services:
 
   redis:
     image: redis:6.0.6
+    env_file:
+      - .env
     command: redis-server # --requirepass ${REDIS_SECRET}
     restart: always
     ports:
@@ -40,7 +30,11 @@ services:
       REDIS_REPLICATION_MODE: master
 
   pgadmin:
-    image:  dpage/pgadmin4:4.23
+    image: dpage/pgadmin4:4.23
+    env_file:
+      - .env
+    depends_on:
+      - db
     restart: always
     ports:
       - 5050:5050
@@ -51,8 +45,27 @@ services:
 
   adminer:
     image: adminer:latest
+    env_file:
+      - .env
+    depends_on:
+      - db
     restart: always
     ports:
       - 8080:8080
     environment:
       ADMINER_DESIGN: pappu687  # pepa-linha / lucas-sandery / pappu687
+
+  backend:
+    image: kpcwebdev/learning_links:latest
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 1993:1993
+    build:
+      context: .
+      dockerfile: ./Dockerfile
