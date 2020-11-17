@@ -1,0 +1,68 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Links {
+    createdAt: DateTime!
+    description: String!
+    linkId: ID!
+    programmingLanguage: String!
+    title: String!
+    updatedAt: DateTime!
+    url: String!
+}
+
+type Mutation {
+    confirmUser(Token: ConfirmUserInput!): Boolean!
+    createLink(linkData: CreateLinkInput!): Links!
+    login(LoginCredentials: LoginInput!): User
+    register(userData: RegisterInput!): User!
+}
+
+type Query {
+    allUsers: [User!]!
+    whoAmI: User
+}
+
+type User {
+    accountConfirmed: Boolean!
+    createdAt: DateTime!
+    email: String!
+    firstName: String!
+    forgotPasswordLocked: Boolean!
+    lastName: String!
+    updatedAt: DateTime!
+    userId: ID!
+    username: String!
+}
+
+input ConfirmUserInput {
+    token: String!
+}
+
+input CreateLinkInput {
+    description: String!
+    programmingLanguage: String!
+    title: String!
+    url: String!
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input RegisterInput {
+    email: String!
+    firstName: String!
+    lastName: String!
+    password: String!
+    username: String!
+}
+
+
+"The javascript `Date` as string. Type represents date and time as the ISO Date string."
+scalar DateTime

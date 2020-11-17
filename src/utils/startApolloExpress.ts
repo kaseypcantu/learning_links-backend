@@ -31,6 +31,8 @@ import LoggingMiddleware from "../middleware/logging";
 import { getTransactionId } from "./db/transaction_storage";
 import logger from "./logger";
 import morgan from "morgan";
+import { LinksResolver } from '../graphql/modules/links/LinksResolver';
+import { CreateLinkResolver } from '../graphql/modules/links/createLink/CreateLinkResolver';
 
 // TODO: add cluster functionality here!
 
@@ -49,7 +51,9 @@ export const startServer = async () => {
       UserResolver,
       RegisterResolver,
       LoginResolver,
-      ConfirmUserResolver
+      ConfirmUserResolver,
+      LinksResolver,
+      CreateLinkResolver
     ],
     validate: true,
     authChecker: ({ context: { req } }) => {
