@@ -92,7 +92,6 @@ class PostgresUsersRepository implements UsersRepository {
     firstName: string, lastName: string, email: string, username: string, password: string
   ): Promise<User> {
 
-
     const repository = getRepository(User);
 
     const newUser = repository.create({
