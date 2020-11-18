@@ -43,6 +43,8 @@ export class Links extends BaseEntity {
   @UpdateDateColumn({ name: 'updated_at', nullable: false, type: 'timestamptz' })
   @Field(() => Date)
   updatedAt!: Date;
+
+  // TODO: Add graphql field(s) and db column(s) to show status of learning or completed.
 }
 
 export interface LinksRepository {
@@ -50,11 +52,11 @@ export interface LinksRepository {
     title: string, url: string, programmingLanguage: string, description: string,
   ): Promise<Links>;
 
-  listLinks(): Promise<Links[]>
+  listLinks(): Promise<Links[]>;
 
-// getLinkById(id: string): Promise<Links>
+  getLinkById(id: string): Promise<Links | undefined>;
 
-// removeLink(): Promise<string>
+  //TODO: Add remove by ID functionality here.
 }
 
 class PostgresLinksRepository implements LinksRepository {
@@ -81,6 +83,10 @@ class PostgresLinksRepository implements LinksRepository {
 
   listLinks(): Promise<Links[]> {
     return getRepository(Links).find();
+  }
+
+  getLinkById(id: string): Promise<Links | undefined> {
+    return getRepository(Links).findOne({ where: { linkId: id } });
   }
 }
 
