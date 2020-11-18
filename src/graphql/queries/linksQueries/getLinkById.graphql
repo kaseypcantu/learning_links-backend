@@ -1,0 +1,13 @@
+query {
+    getLinkById(id: {
+        linkId: "6c1d3b49-9663-42df-b152-a59a3ab46d06"
+    }) {
+        linkId
+        title
+        url
+        programmingLanguage
+        description
+        createdAt
+        updatedAt
+    }
+}

@@ -20,11 +20,13 @@ type Mutation {
     createLink(linkData: CreateLinkInput!): Links!
     login(LoginCredentials: LoginInput!): User
     register(userData: RegisterInput!): User!
+    removeLinkById(id: LinkByIdInput!): String!
 }
 
 type Query {
     allLinks: [Links!]!
     allUsers: [User!]!
+    getLinkById(id: LinkByIdInput!): Links!
     whoAmI: User
 }
 
@@ -49,6 +51,10 @@ input CreateLinkInput {
     programmingLanguage: String!
     title: String!
     url: String!
+}
+
+input LinkByIdInput {
+    linkId: String!
 }
 
 input LoginInput {
