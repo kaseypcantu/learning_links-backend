@@ -25,7 +25,6 @@ export class ConfirmUserResolver {
     const userId = await redis.get(token);
     console.log(`\nUSER_ID: ${userId}\n`);
 
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     if (!userId) {
       return false;
     }
