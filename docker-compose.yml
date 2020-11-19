@@ -64,9 +64,7 @@ services:
     # You also have to change the flower command
 
   mailhog:
-    image: mailhog:latest
-    .env_file:
-      - .env
+    image: mailhog/mailhog:latest
     restart: always
     ports:
       - 1025:1025
