@@ -1,0 +1,7 @@
+mutation {
+    removeLinkById(
+        id: {
+            linkId: "<link-uuid>"
+        }
+    )
+}
