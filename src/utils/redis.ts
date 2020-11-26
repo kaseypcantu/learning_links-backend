@@ -1,10 +1,10 @@
 import "dotenv/config";
 import Redis, { RedisOptions } from "ioredis";
 import logger from "./logger";
-import { ELASTICACHE_HOST, ELASTICACHE_PASSWORD, ELASTICACHE_PORT, isProd } from "./config";
+import { REDIS_PROD_HOST, REDIS_DEV_HOST,isProd } from "./config";
 
 export const redis = new Redis({
-  host: isProd ? process.env.REDIS_HOST : 'localhost',
+  host: isProd ? REDIS_PROD_HOST : REDIS_DEV_HOST, // TODO: Change this ternary to work under the new docker workflows.
   port: 6379
 });
 
