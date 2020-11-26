@@ -14,7 +14,7 @@ EXPOSE $PORT
 
 ############# JavaScript development build stage #############
 
-FROM base as jsdev
+FROM base as dev
 
 CMD ["yarn", "dev:apollo"]
 
