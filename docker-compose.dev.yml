@@ -1,7 +1,7 @@
 version: '3.3'
 services:
 
-  db:
+  dev_db:
     image: postgres:12.3-alpine
     env_file:
       - .env
@@ -15,7 +15,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
 
-  redis:
+  dev_redis:
     image: redis:6.0.6
     env_file:
       - .env
@@ -34,7 +34,7 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
+      - dev_db
     restart: always
     ports:
       - 5050:5050
@@ -48,26 +48,40 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
+      - dev_db
     restart: always
     ports:
       - 8080:8080
     environment:
       ADMINER_DESIGN: pappu687  # pepa-linha / lucas-sandery / pappu68
 
-  rabbitmq:
-    image: rabbitmq:3.8.9
-    restart: always
+#  rabbitmq:
+#    image: rabbitmq:3.8.9
+#    restart: always
     # Using the below image instead is required to enable the "Broker" tab in the flower UI:
     # image: rabbitmq:3-management
     #
     # You also have to change the flower command
 
   mailhog:
-    image: mailhog:latest
-    .env_file:
-      - .env
+    image: mailhog/mailhog:latest
     restart: always
     ports:
     - 1025:1025
     - 8025:8025
+
+  dev_backend:
+    image: kpcwebdev/learning_lynx-backend:dev
+    env_file:
+      - .env
+    depends_on:
+      - dev_db
+      - dev_redis
+    restart: always
+    volumes:
+      - .:/usr/src/dev/app
+    ports:
+      - 1993:1993
+    build:
+      context: .
+      dockerfile: ./Dockerfile
