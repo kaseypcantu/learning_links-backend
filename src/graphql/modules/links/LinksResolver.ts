@@ -21,12 +21,14 @@ export class LinksResolver {
   async getLinkById(
     @Ctx() ctx: PlatformContext,
     @Arg('id') {
-        linkId
+        linkId,
       }: LinkByIdInput,
-  ): Promise<Links | undefined> {
+  ): Promise<Links | string | undefined> {
     const link = linksRepo.getLinkById(linkId);
-    console.log(`Retrieved Link By ID: ${link}`);
-
+    if (!link) {
+      return `A Link with ID: ${linkId} does not exist.`;
+    }
+    console.log(`Retrieved Link By ID: ${linkId}`);
     return link;
   }
 
@@ -34,16 +36,16 @@ export class LinksResolver {
   async removeLinkById(
     @Ctx() ctx: PlatformContext,
     @Arg('id') {
-        linkId
+        linkId,
       }: LinkByIdInput,
   ): Promise<String> {
-    const confirm = await Links.findOne({linkId: linkId});
+    const confirm = await Links.findOne({ linkId: linkId });
     if (!confirm) {
       return `A Link with ID: ${linkId} does not exist.`;
     }
-    return await Links.delete({linkId: linkId})
+    return await Links.delete({ linkId: linkId })
       .then(links => {
         return `Successfully DELETED Link with ID: ${linkId}`;
-      })
+      });
   }
 }
