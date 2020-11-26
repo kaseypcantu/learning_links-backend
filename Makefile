@@ -1,7 +1,7 @@
 # Application Name
-APP_NAME:=learning_links
+APP_NAME:=learning_lynx
 # Docker image name and tag
-IMAGE:=kpcwebdev/learning_links
+IMAGE:=kpcwebdev/learning_lynx-backend
 TAG:=latest
 # Shell that make should use
 SHELL:=bash
@@ -11,13 +11,13 @@ help:
 #	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-jsdev-image: ## Make a development Node.js docker image with dev/test dependencies.
-	docker build --rm --target jsdev -t $(IMAGE):dev .
+dev-image: ## Make a development Node.js docker image with dev/test dependencies.
+	docker build --rm --target dev -t $(IMAGE):dev .
 
 prod-image: ## Make a production Node.js docker image.
 	docker build --rm --target production -t $(IMAGE):$(TAG) .
 
-jsdev-shell: ## Make a BASH shell in the jsdev docker container.
+dev-shell: ## Make a BASH shell in the dev docker container.
 	docker run --rm --it $(IMAGE):dev bash
 
 prod-shell: ## Make a BASH shell in the production docker container.
