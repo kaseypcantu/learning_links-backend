@@ -55,9 +55,9 @@ services:
     environment:
       ADMINER_DESIGN: pappu687  # pepa-linha / lucas-sandery / pappu687
 
-  rabbitmq:
-    image: rabbitmq:3.8.9
-    restart: always
+#  rabbitmq:
+#    image: rabbitmq:3.8.9
+#    restart: always
     # Using the below image instead is required to enable the "Broker" tab in the flower UI:
     # image: rabbitmq:3-management
     #
@@ -71,7 +71,7 @@ services:
       - 8025:8025
 
   backend:
-    image: kpcwebdev/learning_links:latest
+    image: kpcwebdev/learning_lynx-backend:latest
     env_file:
       - .env
     depends_on:
