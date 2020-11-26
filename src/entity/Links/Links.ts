@@ -54,7 +54,7 @@ export interface LinksRepository {
 
   listLinks(): Promise<Links[]>;
 
-  getLinkById(id: string): Promise<Links | undefined>;
+  getLinkById(id: string): Promise<Links | string | undefined>;
 
   //TODO: Add remove by ID functionality here.
 }
@@ -85,7 +85,7 @@ class PostgresLinksRepository implements LinksRepository {
     return getRepository(Links).find();
   }
 
-  getLinkById(id: string): Promise<Links | undefined> {
+  getLinkById(id: string): Promise<Links | string | undefined> {
     return getRepository(Links).findOne({ where: { linkId: id } });
   }
 }
