@@ -16,6 +16,8 @@ EXPOSE $PORT
 
 FROM base as dev
 
+COPY . .
+
 CMD ["yarn", "dev:apollo"]
 
 ############# JavaScript production build stage #############
