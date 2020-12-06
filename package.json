@@ -8,8 +8,8 @@
     "node": ">=0.14"
   },
   "scripts": {
-    "start": "NODE_ENV=production ts-node-dev --respawn --debug --rs src/index.ts",
-    "dev:apollo": "NODE_ENV=development ts-node-dev --respawn --debug --rs src/index.ts"
+    "dev:apollo": "NODE_ENV=development ts-node-dev --respawn --debug --rs src/index.ts",
+    "start": "NODE_ENV=production ts-node-dev --respawn --debug --rs src/index.ts"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
