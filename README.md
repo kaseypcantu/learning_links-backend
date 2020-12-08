@@ -1,4 +1,4 @@
-# _Learning Lynx_
+_Learning Lynx_
 =================
 
 _A GraphQL API to service the LearningLinks frontend, an application that allows me to organize resources and links I want to learn from._
