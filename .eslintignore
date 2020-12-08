@@ -1,6 +1,8 @@
-./node_modules
-./lib
-./public
+node_modules/
+dist/
+lib/
+public/
 *.md
-./docker
-./.husky
+docker/
+.husky/
+*.js
