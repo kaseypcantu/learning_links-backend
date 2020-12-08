@@ -8,8 +8,9 @@
     "node": ">=0.14"
   },
   "scripts": {
+    "clean": "shx rm -rf coverage dist lib",
     "dev:apollo": "NODE_ENV=development ts-node-dev --respawn --debug --rs src/index.ts",
-    "prepush": "shx rm -rf dist",
+    "prepush": "yarn clean",
     "start": "NODE_ENV=production ts-node-dev --respawn --debug --rs src/index.ts",
     "tsc:check": "tsc -p tsconfig.json --noEmit"
   },
