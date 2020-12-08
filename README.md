@@ -44,13 +44,14 @@ yarn dev:apollo
 Once you run this command you can visit the `Learning Lynx GraphQL Playground` in your browser
 at [http://localhost:1993/graphql](http://localhost:1993/graphql "Learning Lynx GraphQL Playground"). This starts the server in `dev` mode and
 watches the project for any changes. You can run `GrpahQL Queries` in the GraphQL Playground and view the generated documentation.
+- You can also make requests from the `Learning Lynx Frontend` or your own server client: [How to Make GraphQL Requests](https://graphql.org/graphql-js/graphql-clients/ "GraphQL Client Requests")
 
 
 Docker Development via [_Docker Compose_](https://docs.docker.com/compose/ "Docker Compose Overview")
 =====================================================================================================
 
 ### Container Stack
-- [Learning Lynx Backend](https://hub.docker.com/r/kpcwebdev/learning_lynx-backend "Learning Lynx Backend")
+- [Learning Lynx Backend](https://hub.docker.com/r/kpcwebdev/learning_lynx-backend "Learning Lynx Backend Docker Image")
 - [Learning Lynx Frontend](https://hub.docker.com/r/kpcwebdev/learning_lynx-frontend "Learning Lynx Frontend Docker Image")
 - [PostgreSQL](https://hub.docker.com/_/postgres "Official Postgres Image")
 - [Redis](https://hub.docker.com/_/redis "Official Redis Image")
