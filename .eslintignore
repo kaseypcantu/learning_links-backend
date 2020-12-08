@@ -4,4 +4,3 @@
 *.md
 ./docker
 ./.husky
-*.js
