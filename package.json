@@ -9,7 +9,16 @@
   },
   "scripts": {
     "dev:apollo": "NODE_ENV=development ts-node-dev --respawn --debug --rs src/index.ts",
-    "start": "NODE_ENV=production ts-node-dev --respawn --debug --rs src/index.ts"
+    "lint": "yarn tsc:check && eslint . --fix",
+    "prepush": "yarn lint",
+    "start": "NODE_ENV=production ts-node-dev --respawn --debug --rs src/index.ts",
+    "tsc:check": "tsc -p tsconfig.json --noEmit"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn prepush"
+    }
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -58,35 +67,20 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.15",
-    "@typescript-eslint/parser": "^4.6.1",
+    "@typescript-eslint/parser": "^4.9.1",
     "dotenv": "^8.2.0",
     "eslint": "^7.12.1",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.2.0",
+    "husky": "^5.0.4",
     "jest": "^26.6.3",
+    "lint-staged": ">=10",
     "ngrok": "^3.3.0",
+    "pinst": "^2.1.1",
     "prettier": "^2.1.2",
     "shx": "^0.3.3",
     "ts-jest": "^26.4.3",
     "ts-node-dev": "^1.0.0"
-  },
-  "prettier": {
-    "tabWidth": 2,
-    "printWidth": 100,
-    "arrowParens": "avoid",
-    "trailingComma": "none",
-    "semi": true,
-    "singleQuote": false,
-    "bracketSpacing": true,
-    "jsxSingleQuote": true,
-    "endOfLine": "lf",
-    "parser": [
-      "typescript",
-      "graphql",
-      "css",
-      "scss",
-      "json",
-      "json-stringify",
-      "html",
-      "yaml"
-    ]
   }
 }

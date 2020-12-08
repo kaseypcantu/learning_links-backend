@@ -1,9 +1,8 @@
-import util from "util";
+import util from 'util';
 
-import { User } from "../../entity/User/User";
-import { getConnection, getRepository } from "typeorm";
-import { AddressResidentialIndicator } from "../../types/shipping-models";
-
+import { User } from '../../entity/User/User';
+import { getConnection, getRepository } from 'typeorm';
+import { AddressResidentialIndicator } from '../../types/shipping-models';
 
 export async function seedData() {
   // console.log("Inserting a new user into the database...");
@@ -38,19 +37,17 @@ export async function seedData() {
   // addr2.addressResidentialIndicator = AddressResidentialIndicator.no;
 
   const user = new User();
-  user.firstName = "Hisoka";
-  user.lastName = "Morrow";
-  user.email = "hisoka@bunchesOfScrunches.com";
-  user.username = "Magician";
-  user.password = "hisokaIsAwesome";
+  user.firstName = 'Hisoka';
+  user.lastName = 'Morrow';
+  user.email = 'hisoka@bunchesOfScrunches.com';
+  user.username = 'Magician';
+  user.password = 'hisokaIsAwesome';
 
-  const userRepo = await getRepository(User);
-  const newUser = await userRepo.find();
+  const userRepo = getRepository(User);
 
-
-  await userRepo.save(newUser);
-  console.log(`Saved a new user with id: ${newUser.userId}`);
-  console.log(`Added User -> ${util.inspect(newUser, true, 6, true)}`);
+  await userRepo.save(user);
+  console.log(`Saved a new user with id: ${user.userId}`);
+  console.log(`Added User -> ${util.inspect(user, true, 6, true)}`);
 
   // const loadedUserRelations = await userRepo.find({ relations: ["shippingAddresses"] });
 

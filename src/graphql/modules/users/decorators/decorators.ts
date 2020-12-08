@@ -2,31 +2,31 @@ import {
   registerDecorator,
   ValidationOptions,
   ValidatorConstraint,
-  ValidatorConstraintInterface
-} from "class-validator";
-import { validate as validateUUID } from "uuid";
+  ValidatorConstraintInterface,
+} from 'class-validator';
+import { validate as validateUUID } from 'uuid';
 
-import { User } from "../../../../entity/User/User";
+import { User } from '../../../../entity/User/User';
 
 /* Check if Email is already in use */
 
 @ValidatorConstraint({ async: true })
 export class IsEmailAlreadyInUseConstraint implements ValidatorConstraintInterface {
   validate(email: string) {
-    return User.findOne({ where: { email: email } }).then(user => {
+    return User.findOne({ where: { email: email } }).then((user) => {
       return !user;
     });
   }
 }
 
 export function IsEmailAlreadyInUse(validationOptions?: ValidationOptions) {
-  return function(object: Object, propertyName: string) {
+  return function (object: Object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
       options: validationOptions,
       constraints: [],
-      validator: IsEmailAlreadyInUseConstraint
+      validator: IsEmailAlreadyInUseConstraint,
     });
   };
 }
@@ -36,20 +36,20 @@ export function IsEmailAlreadyInUse(validationOptions?: ValidationOptions) {
 @ValidatorConstraint({ async: true })
 export class IsUsernameAlreadyInUseConstraint implements ValidatorConstraintInterface {
   validate(username: string): Promise<boolean> {
-    return User.findOne({ where: { username: username } }).then(user => {
+    return User.findOne({ where: { username: username } }).then((user) => {
       return !user;
     });
   }
 }
 
 export function IsUsernameAlreadyInUse(validationOptions?: ValidationOptions) {
-  return function(object: Object, propertyName: string) {
+  return function (object: Object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
       options: validationOptions,
       constraints: [],
-      validator: IsUsernameAlreadyInUseConstraint
+      validator: IsUsernameAlreadyInUseConstraint,
     });
   };
 }
@@ -77,7 +77,6 @@ export function IsUsernameAlreadyInUse(validationOptions?: ValidationOptions) {
 //   };
 // }
 
-
 /* Check if UUID is valid exists */
 
 @ValidatorConstraint({ async: true })
@@ -88,13 +87,13 @@ export class IsValidUUIDConstraint implements ValidatorConstraintInterface {
 }
 
 export function IsValidUUID(validationOptions?: ValidationOptions) {
-  return function(object: Object, propertyName: string) {
+  return function (object: Object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
       options: validationOptions,
       constraints: [],
-      validator: IsValidUUIDConstraint
+      validator: IsValidUUIDConstraint,
     });
   };
 }

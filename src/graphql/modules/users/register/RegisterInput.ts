@@ -1,6 +1,6 @@
-import { MaxLength, Length, IsEmail, IsOptional } from "class-validator";
-import { Field, InputType } from "type-graphql";
-import { IsEmailAlreadyInUse, IsUsernameAlreadyInUse } from "../decorators/decorators";
+import { MaxLength, Length, IsEmail, IsOptional } from 'class-validator';
+import { Field, InputType } from 'type-graphql';
+import { IsEmailAlreadyInUse, IsUsernameAlreadyInUse } from '../decorators/decorators';
 
 @InputType()
 export class RegisterInput {
@@ -15,14 +15,14 @@ export class RegisterInput {
   @Field()
   @IsEmail()
   @IsEmailAlreadyInUse({
-    message: "That e-mail is already in use, please use a different one."
+    message: 'That e-mail is already in use, please use a different one.',
   })
   email!: string;
 
   @Field()
   @Length(1, 25)
   @IsUsernameAlreadyInUse({
-    message: "That username is already in use, please choose a different one."
+    message: 'That username is already in use, please choose a different one.',
   })
   username!: string;
 
@@ -30,4 +30,3 @@ export class RegisterInput {
   @Length(5, 25)
   password!: string;
 }
-

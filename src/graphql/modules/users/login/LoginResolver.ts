@@ -1,28 +1,21 @@
-import bcrypt from "bcryptjs";
-import {
-  Arg, Ctx, FieldResolver, Mutation, Query, Resolver, Root
-} from "type-graphql";
+import bcrypt from 'bcryptjs';
+import { Arg, Ctx, FieldResolver, Mutation, Query, Resolver, Root } from 'type-graphql';
 
-import { User } from "../../../../entity/User/User";
-import { LoginInput } from "./LoginInput";
-import { PlatformContext } from "../../../../types/graphql-utils";
-
+import { User } from '../../../../entity/User/User';
+import { LoginInput } from './LoginInput';
+import { PlatformContext } from '../../../../types/graphql-utils';
 
 @Resolver()
 export class LoginResolver {
-
   @Mutation(() => User, { nullable: true })
   async login(
     @Ctx() ctx: PlatformContext,
-    @Arg("LoginCredentials") {
-        email,
-        password
-      }: LoginInput
+    @Arg('LoginCredentials') { email, password }: LoginInput
   ): Promise<User | null | string> {
     const user = await User.findOne({
       where: {
-        email: email
-      }
+        email: email,
+      },
     });
 
     if (!user) {

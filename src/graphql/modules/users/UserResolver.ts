@@ -1,26 +1,26 @@
-import util from "util";
-import { User } from "../../../entity/User/User";
-import { Query, Resolver, Arg, Ctx, Authorized, Mutation } from "type-graphql";
-import { PlatformContext } from "../../../types/graphql-utils";
-import { getRepository } from "typeorm";
+import util from 'util';
+import { User } from '../../../entity/User/User';
+import { Query, Resolver, Arg, Ctx, Authorized, Mutation } from 'type-graphql';
+import { PlatformContext } from '../../../types/graphql-utils';
+import { getRepository } from 'typeorm';
 
 @Resolver(User)
 export class UserResolver {
   // @Authorized()
-  @Query(returns => [User])
+  @Query((returns) => [User])
   async allUsers(): Promise<User[] | string> {
     const users = await User.find();
     if (!users) {
-      return "No users in the DB yet!";
+      return 'No users in the DB yet!';
     }
     console.log(`All Users: ${users}`);
     return users;
   }
 
-  @Query(returns => User, { nullable: true })
+  @Query((returns) => User, { nullable: true })
   async whoAmI(@Ctx() ctx: PlatformContext): Promise<User | undefined> {
     if (!ctx.req.session!.userId) {
-      console.log("Oops, you are not authenticated. Please login, and try again.");
+      console.log('Oops, you are not authenticated. Please login, and try again.');
       return undefined;
     }
 
@@ -81,4 +81,3 @@ export class UserResolver {
   //   return currentUser;
   // }
 }
-

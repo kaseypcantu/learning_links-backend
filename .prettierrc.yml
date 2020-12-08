@@ -1,18 +1,11 @@
 tabWidth: 2
 printWidth: 100
-singleQuote: false
-trailingComma: none
+proseWrap: preserve
+singleQuote: true
+trailingComma: es5
 semi: true
 bracketSpacing: true
-jsxsingleQuote: false
+jsxSingleQuote: false
 endOfLine: lf
-arrowParens: avoid
-parser:
-  - typescript
-  - graphql
-  - css
-  - scss
-  - json
-  - json-stringify
-  - html
-  - yaml
+arrowParens: always
+parser: typescript

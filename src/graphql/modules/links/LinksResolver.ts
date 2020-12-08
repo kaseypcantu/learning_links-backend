@@ -7,7 +7,7 @@ const linksRepo = createLinksRepository();
 
 @Resolver(Links)
 export class LinksResolver {
-  @Query(returns => [Links])
+  @Query((returns) => [Links])
   async allLinks(): Promise<Links[] | string> {
     const links = linksRepo.listLinks();
     if (!links) {
@@ -17,12 +17,10 @@ export class LinksResolver {
     return links;
   }
 
-  @Query(returns => Links)
+  @Query((returns) => Links)
   async getLinkById(
     @Ctx() ctx: PlatformContext,
-    @Arg('id') {
-        linkId,
-      }: LinkByIdInput,
+    @Arg('id') { linkId }: LinkByIdInput
   ): Promise<Links | string | undefined> {
     const link = linksRepo.getLinkById(linkId);
     if (!link) {
@@ -32,20 +30,17 @@ export class LinksResolver {
     return link;
   }
 
-  @Mutation(returns => String)
+  @Mutation((returns) => String)
   async removeLinkById(
     @Ctx() ctx: PlatformContext,
-    @Arg('id') {
-        linkId,
-      }: LinkByIdInput,
+    @Arg('id') { linkId }: LinkByIdInput
   ): Promise<String> {
     const confirm = await Links.findOne({ linkId: linkId });
     if (!confirm) {
       return `A Link with ID: ${linkId} does not exist.`;
     }
-    return await Links.delete({ linkId: linkId })
-      .then(links => {
-        return `Successfully DELETED Link with ID: ${linkId}`;
-      });
+    return await Links.delete({ linkId: linkId }).then((links) => {
+      return `Successfully DELETED Link with ID: ${linkId}`;
+    });
   }
 }

@@ -4,41 +4,25 @@
 # https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md
 
 root: true
-
+parser: "@typescript-eslint/parser"
+parserOptions:
+  ecmaVersion: 2020
+  sourceType: module
+  project: tsconfig.json
 env:
   node: true
+plugins:
+  - "@typescript-eslint"
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:@typescript-eslint/recommended-requiring-type-checking
+  - plugin:import/errors # for catching immediately-executed imports like "import ./foo"
+  - plugin:import/typescript # disable rules that overlap with typescript
+  - plugin:prettier/recommended # run prettier an an eslint rule that respects prettierrc. Integrates with eslint-config-prettier. Disable overlapping eslint rules.
+  - prettier/@typescript-eslint # disable any overlapping typescript-eslint rules
 
-overrides:
-  # Linter settings for JavaScript
-  - files: [ "**/*.js" ]
-    parserOptions:
-      ecmaVersion: 2020
-    env:
-      es6: true
-    extends:
-      - eslint:recommended
-
-  # Linter settings for TypeScript
-  - files: [ "**/*.ts" ]
-    parser: "@typescript-eslint/parser"
-    parserOptions:
-      ecmaVersion: 2020
-      sourceType: module
-      project: tsconfig.json
-    plugins:
-      - "@typescript-eslint"
-    extends:
-      - eslint:recommended
-      - plugin:@typescript-eslint/recommended
-      - plugin:@typescript-eslint/recommended-requiring-type-checking
-    rules:
-      no-case-declarations: warn
-      "@typescript-eslint/ban-types": off
-      "@typescript-eslint/ban-ts-comment": warn
-      "@typescript-eslint/no-non-null-assertion": warn
-      "@typescript-eslint/no-unsafe-member-access": warn
-      "@typescript-eslint/no-unsafe-assignment": warn
-      indent:
-        - "error"
-        - 2
-
+rules:
+  # Annoying rules that makes code harder to read, write, and/or undrstand
+  no-case-declarations: off
+  "@typescript-eslint/ban-types": off

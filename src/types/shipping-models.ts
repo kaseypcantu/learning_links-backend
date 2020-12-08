@@ -1,5 +1,4 @@
-import { v4 as uuidV4 } from "uuid";
-
+import { v4 as uuidV4 } from 'uuid';
 
 export interface ShippingAddress {
   name: string;
@@ -17,9 +16,9 @@ export interface ShippingAddress {
 }
 
 export enum AddressResidentialIndicator {
-  no = "no",
-  yes = "yes",
-  unknown = "unknown"
+  no = 'no',
+  yes = 'yes',
+  unknown = 'unknown',
 }
 
 export interface AdvancedOptions {
@@ -113,7 +112,7 @@ export interface PackageDimensions {
 
 export interface PackageInsuredValue {
   currency: string;
-  amount: string
+  amount: string;
 }
 
 export interface LabelMessages {
@@ -126,7 +125,7 @@ export interface Shipment {
   carrier_id: string;
   service_code: string;
   external_order_id?: string | null;
-  items?: Items[],
+  items?: Items[];
   external_shipment_id?: string | null;
   ship_date: string;
   ship_to: ShippingAddress;
@@ -142,7 +141,7 @@ export interface Shipment {
 }
 
 export interface PurchaseLabelRequest {
-  shipment: Shipment,
+  shipment: Shipment;
   is_return_label?: boolean;
   rma_number?: string | null;
   charge_event?: string;

@@ -1,25 +1,17 @@
-import bcrypt from "bcryptjs";
-import {
-  Arg, Ctx, FieldResolver, Mutation, Query, Resolver, Root
-} from "type-graphql";
-import util from "util";
+import bcrypt from 'bcryptjs';
+import { Arg, Ctx, FieldResolver, Mutation, Query, Resolver, Root } from 'type-graphql';
+import util from 'util';
 
-import { User } from "../../../../entity/User/User";
-import { redis } from "../../../../utils/redis";
-import { PlatformContext } from "../../../../types/graphql-utils";
-import { ConfirmUserInput } from "./ConfirmUserInput";
-import { getRepository } from "typeorm";
-
+import { User } from '../../../../entity/User/User';
+import { redis } from '../../../../utils/redis';
+import { PlatformContext } from '../../../../types/graphql-utils';
+import { ConfirmUserInput } from './ConfirmUserInput';
+import { getRepository } from 'typeorm';
 
 @Resolver()
 export class ConfirmUserResolver {
-
   @Mutation(() => Boolean)
-  async confirmUser(
-    @Arg("Token") {
-      token
-    }: ConfirmUserInput
-  ): Promise<boolean> {
+  async confirmUser(@Arg('Token') { token }: ConfirmUserInput): Promise<boolean> {
     const userRepo = getRepository(User);
 
     const userId = await redis.get(token);
@@ -29,9 +21,12 @@ export class ConfirmUserResolver {
       return false;
     }
 
-    const updatedUser = await userRepo.update({ userId: userId }, {
-      accountConfirmed: true
-    });
+    const updatedUser = await userRepo.update(
+      { userId: userId },
+      {
+        accountConfirmed: true,
+      }
+    );
 
     console.log(`\nUPDATED_USER: ${util.inspect(updatedUser, true, 8, true)}\n`);
 

@@ -11,11 +11,9 @@ import { Field, ID, ObjectType } from 'type-graphql';
 import { ErrorResponse, PrettyError } from '../../utils/errorResponse';
 import logger from '../../utils/logger';
 
-
 @Entity({ name: 'links' })
 @ObjectType()
 export class Links extends BaseEntity {
-
   @PrimaryGeneratedColumn('uuid', { name: 'link_id' })
   @Field(() => ID)
   linkId!: string;
@@ -49,7 +47,10 @@ export class Links extends BaseEntity {
 
 export interface LinksRepository {
   createLink(
-    title: string, url: string, programmingLanguage: string, description: string,
+    title: string,
+    url: string,
+    programmingLanguage: string,
+    description: string
   ): Promise<Links>;
 
   listLinks(): Promise<Links[]>;
@@ -61,19 +62,25 @@ export interface LinksRepository {
 
 class PostgresLinksRepository implements LinksRepository {
   createLink(
-    title: string, url: string, programmingLanguage: string, description: string,
+    title: string,
+    url: string,
+    programmingLanguage: string,
+    description: string
   ): Promise<Links> {
     const repository = getRepository(Links);
 
     const newLink = repository.create({
-      title, url, programmingLanguage, description,
+      title,
+      url,
+      programmingLanguage,
+      description,
     });
     console.log(`creating new link instance: ${newLink.linkId}`);
 
     return repository
       .save(newLink)
-      .then(linkData => linkData)
-      .catch(err => {
+      .then((linkData) => linkData)
+      .catch((err) => {
         logger.error(err.message, err);
         const cleanError = PrettyError.fromError(err);
         console.log(cleanError);
