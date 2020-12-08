@@ -1,5 +1,5 @@
-import { MaxLength, Length, IsEmail, IsOptional } from "class-validator";
-import { Field, InputType } from "type-graphql";
+import { MaxLength, Length, IsEmail, IsOptional } from 'class-validator';
+import { Field, InputType } from 'type-graphql';
 
 @InputType()
 export class LoginInput {
@@ -9,7 +9,7 @@ export class LoginInput {
 
   @Field()
   @Length(5, 25, {
-    message: "Password must be between 5-25 characters long."
+    message: 'Password must be between 5-25 characters long.',
   })
   password!: string;
 }

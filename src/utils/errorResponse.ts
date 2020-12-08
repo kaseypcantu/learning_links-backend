@@ -1,4 +1,4 @@
-import { ValidateError } from "tsoa";
+import { ValidateError } from 'tsoa';
 
 export class PrettyError {
   readonly errMessage: string;
@@ -25,7 +25,7 @@ export class ErrorResponse extends Error {
     this.statusCode = statusCode;
     this.name = name;
     this.errors = errors;
-    this.message = errors.map(r => r.errMessage).join(", ");
+    this.message = errors.map((r) => r.errMessage).join(', ');
   }
 
   static fromValidationError(error: ValidateError): ErrorResponse {
