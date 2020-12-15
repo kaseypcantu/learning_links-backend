@@ -70,18 +70,18 @@ services:
     - 1025:1025
     - 8025:8025
 
-  dev_backend:
-    image: kpcwebdev/learning_lynx-backend:dev
-    env_file:
-      - .env
-    depends_on:
-      - dev_db
-      - dev_redis
-    restart: always
-    volumes:
-      - .:/usr/src/dev/app
-    ports:
-      - 1993:1993
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+#  dev_backend:
+#    image: kpcwebdev/learning_lynx-backend:dev
+#    env_file:
+#      - .env
+#    depends_on:
+#      - dev_db
+#      - dev_redis
+#    restart: always
+#    volumes:
+#      - .:/usr/src/dev/app
+#    ports:
+#      - 1993:1993
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile
