@@ -1,8 +1,5 @@
 import 'dotenv/config';
-import logger from '../logger';
 import { createTypeOrmConnection } from '../db/typeOrmConn';
-import { redis } from '../redis';
-import { Connection } from 'typeorm';
 
 export const PG_USER = process.env.POSTGRES_USER as string;
 export const PG_PASSWORD = process.env.POSTGRES_PASSWORD as string;
