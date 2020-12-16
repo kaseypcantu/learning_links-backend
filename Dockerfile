@@ -4,7 +4,7 @@ ARG PORT=1993
 
 WORKDIR /usr/src/app
 
-COPY package.json .
+COPY ./package.json .
 
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash && yarn install
 
@@ -16,13 +16,23 @@ EXPOSE $PORT
 
 FROM base as dev
 
-COPY . .
+ENV NODE_ENV=development
+
+COPY --from=base /usr/src/app .
+COPY --from=base /usr/src/app/package.json .
 
 CMD ["yarn", "dev:apollo"]
 
 ############# JavaScript production build stage #############
 
 FROM base as production
+
+ENV NODE_ENV=production
+
+WORKDIR /prod
+
+COPY --from=base /usr/src/app .
+COPY --from=base /usr/src/app/package*.json .
 
 CMD ["yarn", "start"]
 

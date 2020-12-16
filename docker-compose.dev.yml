@@ -29,19 +29,19 @@ services:
     environment:
       REDIS_REPLICATION_MODE: master
 
-  pgadmin:
-    image: dpage/pgadmin4:4.23
-    env_file:
-      - .env
-    depends_on:
-      - dev_db
-    restart: always
-    ports:
-      - 5050:5050
-    environment:
-      PGADMIN_LISTEN_PORT: ${PGADMIN_PORT}
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+#  pgadmin:
+#    image: dpage/pgadmin4:4.23
+#    env_file:
+#      - .env
+#    depends_on:
+#      - dev_db
+#    restart: always
+#    ports:
+#      - 5050:5050
+#    environment:
+#      PGADMIN_LISTEN_PORT: ${PGADMIN_PORT}
+#      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+#      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
 
   adminer:
     image: adminer:latest
@@ -63,12 +63,12 @@ services:
     #
     # You also have to change the flower command
 
-  mailhog:
-    image: mailhog/mailhog:latest
-    restart: always
-    ports:
-    - 1025:1025
-    - 8025:8025
+#  mailhog:
+#    image: mailhog/mailhog:latest
+#    restart: always
+#    ports:
+#    - 1025:1025
+#    - 8025:8025
 
 #  dev_backend:
 #    image: kpcwebdev/learning_lynx-backend:dev

@@ -19,7 +19,7 @@ dev-shell: ## Make a BASH shell in the dev docker container and remove it after 
 	docker run --name $(APP_NAME) --rm -it $(IMAGE):dev bash
 
 run-dev_container: ## Make docker run the dev image and remove it after shutdown
-	docker run --name $(APP_NAME).dev --rm -d -p 3000:3000 $(IMAGE):dev
+	docker run --name $(APP_NAME).dev --rm -d -p 1993:1993 $(IMAGE):dev
 
 prod-image: . ## Make a prod Node.js docker image
 	docker build --rm --target production -t $(IMAGE):$(TAG) .
@@ -28,7 +28,7 @@ prod-shell: ## Make a BASH hell in the prod docker container  and remove it afte
 	docker run --rm -it $(IMAGE):$(TAG) bash
 
 run-prod_container: ## Make docker run the prod image and remove it after shutdown
-	docker run --name $(APP_NAME).prod --rm -d -p 3000:3000 $(IMAGE):$(TAG)
+	docker run --name $(APP_NAME).prod --rm -d -p 1993:1993 $(IMAGE):$(TAG)
 
 droplets_local: ## Make a local docker-machine nodes
 	sh ./scripts/make_droplets-local.sh
